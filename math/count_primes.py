@@ -10,6 +10,9 @@ Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.
 
 """
 
+# Read this one to understand all approaches:
+# https://hackernoon.com/prime-numbers-using-python-824ff4b3ea19
+
 
 class Solution(object):
     def countPrimes(self, n):
