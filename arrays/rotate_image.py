@@ -46,6 +46,10 @@ rotate the input matrix in-place such that it becomes:
 """
 
 class Solution(object):
+    # the below solution works for clockwise:
+    # reverse, then transpose
+    # for anticlockwise we should do:
+    # transpose, then reverse
     def rotate(self, matrix):
         """
         :type matrix: List[List[int]]
@@ -55,11 +59,18 @@ class Solution(object):
         for i in matrix:
             print(i)
         # Reverse initial array to simplify the solution:
-        matrix.reverse()
+        # matrix.reverse()
+
+        # matrix reverse
+        for i in range(len(matrix)):
+            for j in range(len(matrix)-1):
+                k = len(matrix) -1 -j
+                matrix[j][i], matrix[k][i] = matrix[k][i],matrix[j][i]
         print('Reversed array')
         for i in matrix:
             print(i)
 
+        # matrix transpose
         for i in range(len(matrix)):
             for j in range(i):
                 matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
@@ -71,14 +82,14 @@ class Solution(object):
 
 
 solution = Solution()
-# print(solution.rotate([
-#   [1,2,3],
-#   [4,5,6],
-#   [7,8,9]
-# ]))
 print(solution.rotate([
-  [ 5, 1, 9,11],
-  [ 2, 4, 8,10],
-  [13, 3, 6, 7],
-  [15,14,12,16]
+  [1,2,3],
+  [4,5,6],
+  [7,8,9]
 ]))
+# print(solution.rotate([
+#   [ 5, 1, 9,11],
+#   [ 2, 4, 8,10],
+#   [13, 3, 6, 7],
+#   [15,14,12,16]
+# ]))
