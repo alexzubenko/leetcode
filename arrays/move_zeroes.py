@@ -47,7 +47,7 @@ class Solution(object):
             if nums[i] == 0:
                 # please note that nums.pop(i) and nums.remove(i)
                 # are not the same, pop will delete by index and remove
-                # will delete by order
+                # will delete by value
                 # example:
                 # [1,2,3,4,5]
                 # nums.pop(1) = [1,3,4,5]
