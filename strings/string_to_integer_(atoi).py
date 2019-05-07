@@ -43,48 +43,69 @@ Explanation: The number "-91283472332" is out of the range of a 32-bit signed in
 
 """
 
+import re
+
 class Solution(object):
-    # ugly O(n) solution, needs to check what others did
+    # solution with using regex
     def myAtoi(self, str):
-        """
-        :type str: str
-        :rtype: int
-        """
-        result = ""
-        negative = 0
         MAX_INT = 2147483647
         MIN_INT = -2147483648
-        str = str.strip()
-        if len(str) < 1:
-            return 0
-        numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-        if str[0] == "-":
-            negative = 1
-            str = str[1:]
-            # str = str.replace("-", "") !!!!! this will not work if we have
-            # input like "--------234" all - will be replaced we should take care
-            # only of first
-        elif str[0] == "+":
-            str = str[1:]
-            # print('got the +')
-            # str = str.replace("+", "") !!!!! this will not work if we have
-            # input like "--------234" all + will be replaced we should take care
-            # only of first
-        # print(str)
-        for i in str:
-            # print(i)
-            if i in numbers:
-                result += i
-            else:
-                break
-        # print(result)
-        if len(result) > 0:
-            if int(result) > 2**31-1 and not negative:
+        stripped_str = re.findall('(^[\+\-0]*\d+)\D*', str.strip())
+
+        try:
+            result = int(stripped_str[0])
+            # print(result)
+            if result > MAX_INT > 0:
                 return MAX_INT
-            elif int(result) > 2**31-1 and negative:
+            elif result < MIN_INT < 0:
                 return MIN_INT
-            return int(result) if not negative else -int(result)
-        return 0
+            else:
+                return result
+        except:
+            return 0
+
+
+    # # ugly O(n) solution, needs to check what others did
+    # def myAtoi(self, str):
+    #     """
+    #     :type str: str
+    #     :rtype: int
+    #     """
+    #     result = ""
+    #     negative = 0
+    #     MAX_INT = 2147483647
+    #     MIN_INT = -2147483648
+    #     str = str.strip()
+    #     if len(str) < 1:
+    #         return 0
+    #     numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+    #     if str[0] == "-":
+    #         negative = 1
+    #         str = str[1:]
+    #         # str = str.replace("-", "") !!!!! this will not work if we have
+    #         # input like "--------234" all - will be replaced we should take care
+    #         # only of first
+    #     elif str[0] == "+":
+    #         str = str[1:]
+    #         # print('got the +')
+    #         # str = str.replace("+", "") !!!!! this will not work if we have
+    #         # input like "--------234" all + will be replaced we should take care
+    #         # only of first
+    #     # print(str)
+    #     for i in str:
+    #         # print(i)
+    #         if i in numbers:
+    #             result += i
+    #         else:
+    #             break
+    #     # print(result)
+    #     if len(result) > 0:
+    #         if int(result) > 2**31-1 and not negative:
+    #             return MAX_INT
+    #         elif int(result) > 2**31-1 and negative:
+    #             return MIN_INT
+    #         return int(result) if not negative else -int(result)
+    #     return 0
 
 
 solution = Solution()
