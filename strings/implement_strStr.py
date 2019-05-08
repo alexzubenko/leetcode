@@ -24,42 +24,48 @@ C's strstr() and Java's indexOf().
 """
 
 class Solution(object):
+    def strStr(self, haystack, needle):
+        l1, l2 = len(haystack), len(needle)
+        for i in range(l1-l2+1):
+            if needle == haystack[i:i+l2]:
+                return i
+        return -1
     # this solution works not for all cases
     # need to check others solutions
-    def strStr(self, haystack, needle):
-        """
-        :type haystack: str
-        :type needle: str
-        :rtype: int
-        """
-        if len(needle) == 0:
-            return 0
-        elif len(needle) > len(haystack):
-            return -1
-        elif len(needle) == 1 and needle in haystack:
-            return haystack.index(needle)
-
-        for i in range(len(haystack)):
-            if haystack[i] == needle[0]:
-                # print('strating check')
-                c = i
-                got = False
-                j = 1
-                # print(haystack[c + 1])
-                # print(needle[j])
-                while j < len(needle) and c < len(haystack)-1:
-                    if haystack[c+1] != needle[j]:
-
-                        got = False
-                        break
-                    else:
-                        got = True
-                        j +=1
-                        c +=1
-                # print('check is over got = ', got)
-                if got == True:
-                    return i
-        return -1
+    # def strStr(self, haystack, needle):
+    #     """
+    #     :type haystack: str
+    #     :type needle: str
+    #     :rtype: int
+    #     """
+    #     if len(needle) == 0:
+    #         return 0
+    #     elif len(needle) > len(haystack):
+    #         return -1
+    #     elif len(needle) == 1 and needle in haystack:
+    #         return haystack.index(needle)
+    #
+    #     for i in range(len(haystack)):
+    #         if haystack[i] == needle[0]:
+    #             # print('strating check')
+    #             c = i
+    #             got = False
+    #             j = 1
+    #             # print(haystack[c + 1])
+    #             # print(needle[j])
+    #             while j < len(needle) and c < len(haystack)-1:
+    #                 if haystack[c+1] != needle[j]:
+    #
+    #                     got = False
+    #                     break
+    #                 else:
+    #                     got = True
+    #                     j +=1
+    #                     c +=1
+    #             # print('check is over got = ', got)
+    #             if got == True:
+    #                 return i
+    #     return -1
 
 
 
@@ -69,6 +75,7 @@ print(solution.strStr("hello", "ll"))
 print(solution.strStr("mississippi", "issi"))
 print(solution.strStr("mississippi", "issipi"))
 print(solution.strStr("mississippi", "sippia"))
+print(solution.strStr("mississippi", "ippi"))
 
 
 
