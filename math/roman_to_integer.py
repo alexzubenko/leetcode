@@ -43,9 +43,6 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 """
 
 class Solution(object):
-    # this one incorrect because if the input "III"
-    # the replace command will vanish all of them at once
-    # need to think how to delete just first occurance not all of them
     def romanToInt(self, s):
         """
         :type s: str
@@ -72,15 +69,15 @@ class Solution(object):
 
         for key in small.keys():
             if key in s:
-                result += small[key]
+                result += small[key] * s.count(key)
                 s = s.replace(key,"")
 
         for key in transform.keys():
             if key in s:
-                result += transform[key]
+                result += transform[key] * s.count(key)
                 s = s.replace(key,"")
         return result
 
 
 solution = Solution()
-print(solution.romanToInt("III"))
+print(solution.romanToInt("MCMXCIV"))
