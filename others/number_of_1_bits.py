@@ -46,4 +46,4 @@ class Solution(object):
 
 
 solution = Solution()
-print(solution.hammingWeight(00000000000000000000000000001011))
+# print(solution.hammingWeight(00000000000000000000000000001011))
