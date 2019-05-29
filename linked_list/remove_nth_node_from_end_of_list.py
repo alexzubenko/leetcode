@@ -46,37 +46,90 @@ class ListNode(object):
 #             current_node = current_node.next
 #         return string_list
 
-class Solution(object):
-    # FAILING with input like [1,2]
+# class Solution(object):
+#     # FAILING with input like [1,2]
+#     def removeNthFromEnd(self, head, n):
+#         """
+#         :type head: ListNode
+#         :type n: int
+#         :rtype: ListNode
+#         """
+#         check = []
+#         current = head
+#         while current:
+#             check.append(current.val)
+#             current = current.next
+#         node_to_del = len(check)-n
+#         print(check)
+#         print('index to delete', node_to_del)
+#         print('value_to_delete', check[node_to_del])
+#         if len(check) == 1:
+#             return head
+#
+#         current = head
+#         while current:
+#             print(current.val)
+#             if current.val == check[node_to_del]:
+#                 # print('got it')
+#                 if not current.next:
+#                     return head
+#                 next_node = current.next
+#                 current.val = next_node.val
+#                 current.next = next_node.next
+#                 current = next_node
+#             current = current.next
+#         return head
+
+class Solution:
     def removeNthFromEnd(self, head, n):
         """
-        :type head: ListNode
-        :type n: int
-        :rtype: ListNode
+        Time:  O(m)  [m = list length]
+        Space: O(1)
         """
-        check = []
-        current = head
-        while current:
-            check.append(current.val)
-            current = current.next
-        node_to_del = len(check)-n
-        # print(check)
-        # print('index to delete', node_to_del)
-        # print('value_to_delete', check[node_to_del])
-        if len(check) == 1:
-            return head
+        ahead = head
+        print('ahead: ',ahead.val)
+        for i in range(n):
+            print('iterator: ', i)
+            ahead = ahead.next
 
-        current = head
-        while current:
-            print(current.val)
-            if current.val == check[node_to_del]:
-                # print('got it')
-                next_node = current.next
-                current.val = next_node.val
-                current.next = next_node.next
-                current = next_node
-            current = current.next
+        if not ahead:
+            print('no ahead')
+            return head.next
+
+        behind = head
+        print('behind: ', behind.val)
+        while ahead.next:
+            print('ahead.next: ', ahead.next)
+            ahead = ahead.next
+            print('ahead: ', ahead.next)
+            behind = behind.next
+        behind.next = behind.next.next
         return head
+
+    # def removeNthFromEnd(self, head, n):
+    #     """
+    #     Time:  O(m)  [m = list length]
+    #     Space: O(1)
+    #     """
+    #     ahead = head
+    #     print('ahead: ',ahead.val)
+    #     for i in range(n):
+    #         print('iterator: ', i)
+    #         ahead = ahead.next
+    #
+    #     if not ahead:
+    #         print('no ahead')
+    #         return head.next
+    #
+    #     behind = head
+    #     print('behind: ', behind.val)
+    #     while ahead.next:
+    #         print('ahead.next: ', ahead.next)
+    #         ahead = ahead.next
+    #         print('ahead: ', ahead.next)
+    #         behind = behind.next
+    #     behind.next = behind.next.next
+    #     return head
 
 
 
@@ -100,11 +153,12 @@ print(node4.val, node4.next.val)
 print(node5.val, node5.next)
 
 solution = Solution()
-print(solution.removeNthFromEnd(head, 2))
-
-print(head.val, head.next.val)
-print(node2.val, node2.next.val)
-print(node3.val, node3.next.val)
-print(node4.val, node4.next.val)
-print(node5.val, node5.next)
+print('Implementing')
+print(solution.removeNthFromEnd(head, 4))
+#
+# print(head.val, head.next.val)
+# print(node2.val, node2.next.val)
+# print(node3.val, node3.next.val)
+# print(node4.val, node4.next.val)
+# print(node5.val, node5.next)
 
