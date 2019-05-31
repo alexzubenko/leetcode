@@ -33,19 +33,54 @@ class Solution:
         """
         if not node or n == 0:
             return node
+        # dummy_head here is just a pointer to point to the head
+
         dummy_head  = ListNode(0)
         dummy_head.next = node
+        # slow and fast here are the to pointers to go throught the
+        # linked list
         slow = fast = dummy_head
+        # after this line we would have
+        # slow
+        #  |
+        # fast
+        #  |
+        # dummy_head --> 1 --> 2 --> 3 --> 4 --> 5
         k = n
         while k > 0:
             fast = fast.next
             k -= 1
+
+        # after this line we would have
+        # slow
+        #  |
+        #  |                  fast
+        #  |                   |
+        # dummy_head --> 1 --> 2 --> 3 --> 4 --> 5
         while fast and fast.next:
             fast = fast.next
             slow = slow.next
 
+        # after this line we would have
+        #                           slow
+        #                            |
+        #                            |          fast
+        #                            |           |
+        # dummy_head --> 1 --> 2 --> 3 --> 4 --> 5
+
         if slow.next:
             slow.next = slow.next.next
+
+        # after this line we would have
+        #                           slow
+        #                            |
+        #                            |        fast
+        #                            |         |
+        # dummy_head --> 1 --> 2 --> 3   4     5
+        #                            |         ^
+        #                            |_________|
+        #
+        # dummy_head --> 1 --> 2 --> 3 -->  5
         return dummy_head.next
 
 
@@ -57,15 +92,15 @@ node2 = ListNode(2)
 node3 = ListNode(3)
 node4 = ListNode(4)
 node5 = ListNode(5)
-node6 = ListNode(6)
-node7 = ListNode(7)
+# node6 = ListNode(6)
+# node7 = ListNode(7)
 
 head.next = node2
 node2.next = node3
 node3.next = node4
 node4.next = node5
-node5.next = node6
-node6.next = node7
+# node5.next = node6
+# node6.next = node7
 
 solution = Solution()
 input = head
