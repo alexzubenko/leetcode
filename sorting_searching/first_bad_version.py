@@ -24,9 +24,9 @@ Then 4 is the first bad version.
 
 def isBadVersion(input):
     if input >= 4:
-        return False
-    else:
         return True
+    else:
+        return False
 
 class Solution(object):
     def firstBadVersion(self, n):
@@ -34,14 +34,47 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        for i in range(n+1):
-            if not isBadVersion(i):
-                print('this version is bad: {}'.format(i))
-                break
+        start = 1
+        end = n
+
+        while start < end:
+            print('start', start)
+            print('end',end)
+
+            mid = (start + end)//2
+            print('mid',mid)
+            if isBadVersion(mid):
+                end = mid
             else:
-                print("thid version is good: {}".format(i))
-        return i
+                start = mid + 1
+        return start
+
+    # # another slower
+    # def firstBadVersion(self, n):
+    #     """
+    #     :type n: int
+    #     :rtype: int
+    #     """
+    #     start = 1
+    #     while start < n + 1:
+    #         if isBadVersion(start):
+    #             return start
+    #         else:
+    #             start += 1
+    # this one works fine but for small numbers
+    # def firstBadVersion(self, n):
+    #     """
+    #     :type n: int
+    #     :rtype: int
+    #     """
+    #     for i in range(1,n+1):
+    #         if isBadVersion(i):
+    #             print('this version is bad: {}'.format(i))
+    #             break
+    #         else:
+    #             print("thid version is good: {}".format(i))
+    #     return i
 
 
 solution = Solution()
-print(solution.firstBadVersion(6))
+print(solution.firstBadVersion(10))
