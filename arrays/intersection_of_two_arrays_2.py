@@ -30,16 +30,38 @@ from collections import Counter
 
 
 class Solution(object):
-    # Counter solution
+    # This solution works and does not consume additional memory
+    # the main thing here is to start with smaller array or with any
+    # if they have the same len and delete the already checked element from
+    # not the same array
     def intersect(self, nums1, nums2):
         result = []
-        c1 = Counter(nums1)
-        # print(c1)
-        for i in nums2:
-            if i in c1 and c1[i] > 0:
-                result.append(i)
-                c1[i] -= 1
+        if len(nums1) < len(nums2):
+            for i in nums1:
+                if i in nums2:
+                    result.append(i)
+                    nums2.remove(i)
+        elif len(nums1) > len(nums2):
+            for i in nums2:
+                if i in nums1:
+                    result.append(i)
+                    nums1.remove(i)
+        else:
+            for i in nums1:
+                if i in nums2:
+                    result.append(i)
+                    nums2.remove(i)
         return result
+    # Counter solution
+    # def intersect(self, nums1, nums2):
+    #     result = []
+    #     c1 = Counter(nums1)
+    #     # print(c1)
+    #     for i in nums2:
+    #         if i in c1 and c1[i] > 0:
+    #             result.append(i)
+    #             c1[i] -= 1
+    #     return result
     # # solution using dictionary
     # def intersect(self, nums1, nums2):
     #     result = []
@@ -81,7 +103,7 @@ class Solution(object):
 
 
 solution = Solution()
-print(solution.intersect([1,2,2,1], [2,2]))
+# print(solution.intersect([1,2,2,1], [2,2]))
 print(solution.intersect([4,9,5], [9,4,9,8,4]))
-print(solution.intersect([0,0,0,0], [0]))
-print(solution.intersect([1,2], [2,1]))
+# print(solution.intersect([0,0,0,0], [0]))
+# print(solution.intersect([1,2], [2,1]))

@@ -71,28 +71,55 @@ class Solution(object):
 #         return uniq
 
 class Solution(object):
+    # this one works good but uses addional memory
     def singleNumber(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        uniq = {}
+        testik = {}
         for i in nums:
-            if i in uniq:
-                print('yes')
-                uniq[i] = 0
-                print(uniq[i])
+            if i in testik:
+                testik[i] = 1
             else:
-                print('nope')
-                uniq[i] = 1
-                print(uniq[i])
-            print(uniq)
+                testik[i] = 0
+        for key in testik.keys():
+            if testik[key] == 0:
+                return key
 
-        for i in uniq.keys():
-            if (uniq[i] == 1):
-                return i
+    # this one works like a charm but nor for huge input
+    # def singleNumber(self, nums):
+    #     if len(nums) == 1:
+    #         return nums[0]
+    #     while True:
+    #         if nums[0] not in nums[1:]:
+    #             return nums[0]
+    #         else:
+    #             nums = [z for z in nums if z!=nums[0]]
+
+    # def singleNumber(self, nums):
+    #     """
+    #     :type nums: List[int]
+    #     :rtype: int
+    #     """
+    #     uniq = {}
+    #     for i in nums:
+    #         if i in uniq:
+    #             print('yes')
+    #             uniq[i] = 0
+    #             print(uniq[i])
+    #         else:
+    #             print('nope')
+    #             uniq[i] = 1
+    #             print(uniq[i])
+    #         print(uniq)
+    #
+    #     for i in uniq.keys():
+    #         if (uniq[i] == 1):
+    #             return i
 
 
 
 solution = Solution()
-print(solution.singleNumber([2,2,1,1,8]))
+# print(solution.singleNumber([2,2,1,1,8]))
+# print(solution.singleNumber([4,1,2,1,2]))
+# print(solution.singleNumber([2,2,1]))
+# print(solution.singleNumber([1,0,1]))
+# print(solution.singleNumber([1]))
+
