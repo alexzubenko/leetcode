@@ -21,6 +21,17 @@ Output: ["h","a","n","n","a","H"]
 """
 
 class Solution(object):
+    def reverseString(self, s):
+        index = len(s)
+        # print('before', s)
+        while index>1:
+            # print(index)
+            # print(s[0])
+            s.insert(index,s[0])
+            s.pop(0)
+            # print('after', s)
+            index -=1
+        return s
     # First solution is very easy but it does not work on leetcode
     # def reverseString(self, s):
     #     """
@@ -41,14 +52,16 @@ class Solution(object):
     #         s[i], s[~i] = s[~i], s[i]
     #     return s
     # This is the another way but doesnt work on leetcode as well
-    def reverseString(self, s):
-        reverse = []
-        for i in range(len(s)-1,-1,-1):
-            reverse.append(s[i])
-        return reverse
+    # def reverseString(self, s):
+    #     reverse = []
+    #     for i in range(len(s)-1,-1,-1):
+    #         reverse.append(s[i])
+    #     return reverse
+
 
 
 
 
 solution = Solution()
-print(solution.reverseString(["H","a","n","n","a","h"]))
+# print(solution.reverseString(["H","a","n","n","a","h"]))
+print(solution.reverseString(["H","e","l","l","o"]))
