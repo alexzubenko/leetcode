@@ -31,6 +31,9 @@ class Solution:
         # Due to fact that counter here represents
         # the last valid index of array we should substitute 1
         # from it to not hit the index out of range error
+        # Attention, this will work only if the dublicades
+        # Grouped together like 1,2,3,3,4,5,5,6
+        # it will not work in case of 1,2,3,4,2,4
         counter = len(dup_list)-1
         index = 0
         while index < counter:
@@ -41,6 +44,17 @@ class Solution:
         return dup_list
 
     # Write the function which should leverage .count() built in list method
+    # this function should work even if the duplicates located not as a group
+    def remove_dups_count(self, dups):
+        index = 0
+        counter = len(dups)-1
+        while index < counter:
+            if dups.count(dups[index])> 1:
+                dups.pop(index)
+                counter -=1
+            else:
+                index +=1
+        return dups
 
 
 
@@ -72,3 +86,17 @@ print("{} should transform to {}\n"
     [3, 3, 1, 7, 7, 7],
     [3, 1, 7], sol.remove_inplace([3, 3, 1, 7, 7, 7]),
     [3, 1, 7] ==  sol.remove_inplace([3, 3, 1, 7, 7, 7])))
+
+print('\nStarting testing solution in place with count\n')
+print("{} should transform to {}\n"
+      " and we have {}, which is actually ==> {}\n".format(
+    ['a', 'a', 'x', 'x', 'x', 'g', 't', 't'],
+    ['a', 'x', 'g', 't'], sol.remove_dups_count(['a', 'a', 'x', 'x', 'x', 'g', 't', 't']),
+    ['a', 'x', 'g', 't'] ==  sol.remove_dups_count(['a', 'a', 'x', 'x', 'x', 'g', 't', 't'])))
+
+
+print("{} should transform to {}\n"
+      " and we have {}, which is actually ==> {}\n".format(
+    [3, 3, 1, 7, 7, 7],
+    [3, 1, 7], sol.remove_dups_count([3, 3, 1, 7, 7, 7]),
+    [3, 1, 7] ==  sol.remove_dups_count([3, 3, 1, 7, 7, 7])))
